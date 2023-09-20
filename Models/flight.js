@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 
 const flightSchema = new mongoose.Schema({
-  airplane: {
+  airline: {
     type: String, 
     enum: ['American', 'SouthWest', 'United']
   },
@@ -15,10 +15,10 @@ const flightSchema = new mongoose.Schema({
     min: 10, 
     max: 9999
   },
-  depart: {
+  departs: {
     type: Date,
     default: () => {
-      const currentDate = new Date(); 
+      const currentDate = new Date()
       currentDate.setFullYear(currentDate.getFullYear() + 1)
       return currentDate
     }

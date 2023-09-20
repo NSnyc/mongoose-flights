@@ -25,14 +25,16 @@ function newFlight(req, res) {
 }
 
 function create(req, res) {
-  if (req.body.depart === "") req.body.depart = addOneYear()
+  if (req.body.departs === "") {
+    delete req.body.departs
+  }
   Flight.create(req.body)
     .then(flight => {
-      console.log("Create successful");
+      console.log("Create successful")
       res.redirect("/flights/new")
     })
     .catch(err => {
-      console.log(err);
+      console.log(err)
       res.redirect("/flights/new")
     })
 }
@@ -48,9 +50,24 @@ function deleteFlight(req, res) {
   })
 }
 
+function show(req, res) {
+  Flight.findById(req.params.flightId)
+  .then(flight => {
+    res.render('flights/show', {
+      flight: flight, 
+      title: 'Flight Details',
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/flights')
+  })
+}
+
 export {
   index,
   newFlight as new,
   create,
   deleteFlight as delete,
+  show,
 }

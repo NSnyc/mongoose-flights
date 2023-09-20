@@ -1,9 +1,11 @@
-// import npm packages
+import "dotenv/config.js"
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import createError from 'http-errors'
 import logger from 'morgan'
+import methodOverride from 'method-override'
+import './config/database.js'
 
 // import routers
 import { router as indexRouter } from './routes/index.js'
@@ -24,6 +26,7 @@ app.use(
     path.join(path.dirname(fileURLToPath(import.meta.url)), 'public')
   )
 )
+app.use(methodOverride('_method'))
 
 // mount imported routes
 app.use('/', indexRouter)

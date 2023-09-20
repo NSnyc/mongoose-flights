@@ -14,6 +14,27 @@ function index(req, res) {
   })
 }
 
+function newFlight(req, res) {
+  res.render('flights/new', {
+    title: 'Add Flight'
+  })
+}
+
+function create(req, res) {
+  if (req.body.depart === "") req.body.depart = addOneYear()
+  Flight.create(req.body)
+    .then(flight => {
+      console.log("Create successful");
+      res.redirect("/flights/new")
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect("/flights/new")
+    })
+}
+
 export {
   index,
+  newFlight as new,
+  create,
 }

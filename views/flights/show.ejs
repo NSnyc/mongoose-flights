@@ -12,6 +12,37 @@
     <div><%= flight.flightNo %></div>
     <div>Departure Time </div>
     <div><%= flight.departs %></div>
+    <div>Tickets:</div>
+        <div>
+          <% if (flight.tickets.length=== 0) { %>
+            No tickets have been bought yet
+            <% } else { %>
+              <ul>
+                <% flight.tickets.forEach(ticket=> { %>
+                  <li>
+                    <%= `Seat: ${ticket.seat}, Price: ${ticket.price}` %>
+                        <form action="/flights/<%= flight._id %>/tickets/<%= ticket._id %>?_method=DELETE" method="POST"
+                          class="delete-btn" autocomplete="off">
+                          <button type="submit">X</button>
+                        </form>
+                  </li>
+                  <% }) %>
+              </ul>
+              <% } %>
+        </div>
+      </section>
+      <hr style="width:70%;margin-top: 50px;height: 2px;
+      background: black;border: none;">
+
+      <!-- BUY TICKET SECTION -->
+      <section id="buy-ticket">
+        <h2 style="text-align: center;">Add Ticket</h2>
+        <h2></h2>
+        <form action="/flights/<%= flight._id%>/tickets" method="POST" autocomplete="off">
+          <input name="seat" required pattern="[A-Fa-f][1-99]\d?" placeholder="Ticket no: [A-F][1-99]">
+          <input type="text" name="price" id="price-input" placeholder="Price">
+          <button type="submit" style="margin: 20px auto">Add Ticket</button>
+        </form>
   </section>
   <div>
     <a href="/flights/<%= flight._id %>/edit">

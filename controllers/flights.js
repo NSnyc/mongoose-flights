@@ -54,11 +54,7 @@ function show(req, res) {
   Flight.findById(req.params.flightId)
   .then(flight => {
     res.render('flights/show', {
-<<<<<<< HEAD
       flight, 
-=======
-      flight: flight, 
->>>>>>> a4590e98decf896c6ba54ffa68f513365d185f2a
       title: 'Flight Details',
     })
   })
@@ -68,7 +64,6 @@ function show(req, res) {
   })
 }
 
-<<<<<<< HEAD
 function edit(req, res) {
   Flight.findById(req.params.flightId)
   .then(flight => {
@@ -93,17 +88,12 @@ function update(req, res) {
     })
 }
 
-=======
->>>>>>> a4590e98decf896c6ba54ffa68f513365d185f2a
 export {
   index,
   newFlight as new,
   create,
   deleteFlight as delete,
   show,
-<<<<<<< HEAD
   edit,
   update,
-=======
->>>>>>> a4590e98decf896c6ba54ffa68f513365d185f2a
 }

@@ -22,8 +22,8 @@
         </select>
         <label for="flightNo-input">Flight Number:</label>
         <input type="text" name="flightNo" value="<%= flight.flightNo %>" required>
-        <label for="depart-input">Depart</label>
-        <input type="date" name="depart" value="<%= flight.depart %>">
+        <label for="depart-input">Departure Time</label>
+        <input type="datetime-local" name="depart" value="<%= flight.depart %>">
         <button type="submit">Update</button>
       </form>
     </main>

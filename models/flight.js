@@ -1,12 +1,18 @@
 import mongoose, { Schema } from "mongoose"
-// import { ticketSchema } from "./ticket.js"
+// import { Meal } from "./meal.js"
 
 const ticketSchema = new Schema({
   seat: { type: String, match: /[A-Fa-f][1-9]\d?/ },
   price: { type: Number, min: 0 }
 })
 
-const flightSchema = new mongoose.Schema({
+const mealSchema = new Schema({
+  name: {type: String, required: true}
+}, {
+  timestamps: true
+})
+
+const flightSchema = new Schema({
   airline: {
     type: String, 
     enum: ['American', 'SouthWest', 'United']
@@ -29,7 +35,8 @@ const flightSchema = new mongoose.Schema({
       return currentDate
     }
   },
-  tickets: [ticketSchema]
+  tickets: [ticketSchema],
+  meals: [{type: Schema.Types.ObjectId, ref: 'Meal'}]
 }, {
   timestamps: true
 })

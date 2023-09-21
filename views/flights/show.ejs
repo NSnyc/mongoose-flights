@@ -36,9 +36,7 @@
                     </a>
                   </div>
   </section>
-  <hr style="width:70%;margin-top: 50px;height: 2px;
-  background: black;border: none;">
-
+  <hr>
   <h2 style="text-align: center;">Meals: </h2>
     <ul>
       <% flight.meals.forEach(mealName => { %>
@@ -46,7 +44,6 @@
       <% }) %>
     </ul>
   </section>
-
   <form id="add-meal-to-flight" method="POST" action="/flights/<%= flight._id %>/meal">
     <select name="mealId">
       <% meals.forEach(meal => { %>
@@ -55,7 +52,6 @@
     </select>
     <button type="submit">Add Meal to Flight</button>
   </form>
-
   <section>
       <section id="add-ticket">
         <h2 style="text-align: center;">Add Ticket</h2>

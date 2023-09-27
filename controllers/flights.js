@@ -4,7 +4,7 @@ import { Meal } from "../models/meal.js";
 function index(req, res) {
   Flight.find({})
   .then(flights => {
-    res.render('flights/index', {
+    res.render('flights', {
       flights,
       title: 'All Flights'
     })
@@ -159,6 +159,25 @@ function addMealToFlight(req, res) {
   })
 }
 
+function removeMealFromFlight(req, res) {
+  Flight.findById(req.params.flightId)
+    .then(flight => {
+      flight.tickets.id(req.params.mealId).deleteOne()
+      flight.save()
+        .then(() => {
+          res.redirect(`/flights/${flight._id}`)
+        })
+        .catch(err => {
+          console.log(err);
+          res.redirect('/flights')
+        })
+    })
+    .catch(err => {
+      console.log(err);
+      res.redirect('/flights')
+    })
+}
+
 export {
   index,
   newFlight as new,
@@ -170,4 +189,5 @@ export {
   addTicket,
   addMealToFlight,
   deleteTicket,
+  removeMealFromFlight,
 }

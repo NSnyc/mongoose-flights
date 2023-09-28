@@ -91,10 +91,7 @@ function edit(req, res) {
 function update(req, res) {
   Flight.findByIdAndUpdate(req.params.flightId, req.body, { new: true })
   .then(flight => {
-    res.render("flights/show", {
-      title: "Flight Details",
-      flight: flight
-    })
+    res.redirect(`/flights/${flight._id}`)
   })
   .catch(err => {
     console.log(err);
